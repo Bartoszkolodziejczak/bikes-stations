@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { BikeStationRoutingModule } from './bike-station-routing.module';
 import * as fromContainers from './containers';
 import * as fromComponents from './components';
+import { AgmCoreModule } from '@agm/core';
 
 
 @NgModule({
@@ -12,7 +13,11 @@ import * as fromComponents from './components';
   ],
   imports: [
     CommonModule,
-    BikeStationRoutingModule
+    BikeStationRoutingModule,
+    AgmCoreModule.forRoot({
+      apiKey: '',
+      libraries: ['geometry']
+    })
   ],
 })
 export class BikeStationModule { }

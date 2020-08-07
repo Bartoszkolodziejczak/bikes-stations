@@ -1,3 +1,4 @@
-<p>bike-station works!</p>
-TEST
-{{bikeStation$ | async | json}}
+<app-bike-station-details [bikeStation]="bikeStation$ | async"
+                          [userLatitude]="userLatitude"
+                          [userLongitude]="userLongitude">
+</app-bike-station-details>

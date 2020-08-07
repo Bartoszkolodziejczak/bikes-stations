@@ -1,0 +1,17 @@
+<agm-map [latitude]="userLatitude"
+         [longitude]="userLongitude"
+         [zoomControl]="false"
+         [zoom]="11">
+  <agm-marker [latitude]="userLatitude"
+              [longitude]="userLongitude"
+              [iconUrl]="localizationIcon">
+  </agm-marker>
+  <agm-marker [latitude]="bikeStation.geometry.coordinates[1]"
+              [longitude]="bikeStation.geometry.coordinates[0]"
+              [iconUrl]="bikeIcon">
+  </agm-marker>
+</agm-map>
+
+<pre>
+  {{bikeStation | json}}
+</pre>

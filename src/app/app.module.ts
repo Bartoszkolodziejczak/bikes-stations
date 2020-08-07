@@ -14,9 +14,6 @@ import { CoreModule } from './core/core.module';
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    AgmCoreModule.forRoot({
-      apiKey: ''
-    })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,16 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 14" width="14" height="14">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
 	<defs>
 		<clipPath clipPathUnits="userSpaceOnUse" id="cp1">
-			<path d="M-139 -284L236 -284L236 383L-139 383Z" />
+			<path d="M-134 -279L241 -279L241 388L-134 388Z" />
 		</clipPath>
 	</defs>
 	<style>
 		tspan { white-space:pre }
-		.shp0 { fill: #4264fb } 
+		.shp0 { fill-opacity: 0.302;fill: #4264fb } 
+		.shp1 { fill: #4264fb } 
 	</style>
 	<g id="rowery-1" clip-path="url(#cp1)">
 		<g id="moja lok">
-			<path id="loc1" class="shp0" d="M7 14C10.87 14 14 10.87 14 7C14 3.13 10.87 0 7 0C3.13 0 0 3.13 0 7C0 10.87 3.13 14 7 14Z" />
+			<path id="loc2" class="shp0" d="M12 24C18.63 24 24 18.63 24 12C24 5.37 18.63 0 12 0C5.37 0 0 5.37 0 12C0 18.63 5.37 24 12 24Z" />
+			<path id="loc1" class="shp1" d="M12 19C15.87 19 19 15.87 19 12C19 8.13 15.87 5 12 5C8.13 5 5 8.13 5 12C5 15.87 8.13 19 12 19Z" />
 		</g>
 	</g>
 </svg>
