@@ -21,7 +21,7 @@ export class LoadBikeStationResolver implements Resolve<BikeStation> {
     if (checkCacheFeatureIsExists) {
       return this.bikesStationService.cacheFeature$.pipe(
         take(1),
-        map((data: Feature) => data.features.find((station: BikeStation) => station.id === stationId)),
+        map((data: Feature) => this.findBikeStation(data, stationId)),
         catchError(error => {
           console.log('error', error);
           return of(null);
@@ -29,7 +29,7 @@ export class LoadBikeStationResolver implements Resolve<BikeStation> {
       );
     } else {
       return this.bikesStationService.getBikesStations().pipe(
-        map((data: Feature) => data.features.find((station: BikeStation) => station.id === stationId)),
+        map((data: Feature) => this.findBikeStation(data, stationId)),
         catchError(error => {
           console.log('error', error);
           return of(null);
@@ -37,6 +37,10 @@ export class LoadBikeStationResolver implements Resolve<BikeStation> {
       );
     }
 
+  }
+
+  private findBikeStation(data: Feature, stationId: string): BikeStation {
+    return data.features.find((station: BikeStation) => station.id === stationId);
   }
 
 
