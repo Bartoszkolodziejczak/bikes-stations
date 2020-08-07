@@ -1,0 +1,21 @@
+@import "../../../../../variables.scss";
+
+.card {
+  .available {
+    font-size: 4em;
+
+    &.available-bikes {
+      color: $available;
+    }
+
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: $hover-background-color;
+  }
+
+}
+
+
+

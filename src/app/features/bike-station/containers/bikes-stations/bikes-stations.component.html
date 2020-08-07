@@ -1,3 +1,6 @@
-<app-bikes-stations-list
-  [bikesStations]="bikesStations$ | async">
-</app-bikes-stations-list>
+<div class="container-fluid">
+  <app-bikes-stations-list
+    [bikeStations]="bikesStations$ | async"
+    (navigateToMap)="onNavigateToMap($event)">
+  </app-bikes-stations-list>
+</div>

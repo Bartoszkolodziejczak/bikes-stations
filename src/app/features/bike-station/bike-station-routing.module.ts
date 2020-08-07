@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BikesStationsComponent } from './containers/bikes-stations/bikes-stations.component';
+import { LoadBikesStationsResolver } from './resolvers/load-bikes-stations.resolver';
 
 const routes: Routes = [
   {
     path: '',
-    component: BikesStationsComponent
+    component: BikesStationsComponent,
+    resolve: {
+      bikesStations: LoadBikesStationsResolver
+    }
   },
   {
     path: '**',
@@ -15,6 +19,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [LoadBikesStationsResolver]
 })
 export class BikeStationRoutingModule { }

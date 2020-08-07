@@ -1,3 +1,21 @@
-<pre>
-  {{bikesStations | json}}
-</pre>
+<div *ngFor="let station of bikeStations"
+     class="card mt-3">
+  <div *ngIf="station && station.properties"
+       class="card-body"
+       (click)="onNavigateToMap(station.id)">
+    <h5 class="card-title">{{station.properties.label}}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{station.properties.updated}}</h6>
+    <div class="row mt-4">
+      <div class="col-6 text-center">
+        <img src="assets/images/bike.svg" alt="bike">
+        <p class="text-muted mb-0">Available bikes</p>
+        <h2 class="available available-bikes">{{station.properties.bikes}}</h2>
+      </div>
+      <div class="col-6 text-center">
+        <img src="assets/images/unlock.svg" alt="unlock">
+        <p class="text-muted mb-0">Available places</p>
+        <h2 class="available">{{station.properties.free_racks}}</h2>
+      </div>
+    </div>
+  </div>
+</div>

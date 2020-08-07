@@ -13,6 +13,6 @@ import * as fromComponents from './components';
   imports: [
     CommonModule,
     BikeStationRoutingModule
-  ]
+  ],
 })
 export class BikeStationModule { }
