@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { BikeStationService } from '../../../../core/services/http/bike-station.service';
 import { Observable } from 'rxjs';
-import { ActivatedRoute, Data } from '@angular/router';
+import { ActivatedRoute, Data, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { BikeStation } from '../../../../core/models/bike-station';
-import { StationDetails } from '../../../../core/models/station-details';
 
 @Component({
   selector: 'app-bikes-stations',
@@ -15,8 +13,8 @@ export class BikesStationsComponent implements OnInit {
 
   bikesStations$: Observable<BikeStation[]>;
 
-  constructor(private bikeStationService: BikeStationService,
-              private activatedRoute: ActivatedRoute) {
+  constructor(private activatedRoute: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit(): void {
@@ -26,7 +24,7 @@ export class BikesStationsComponent implements OnInit {
   }
 
   onNavigateToMap(stationId: number): void {
-    console.log('navigation to', stationId);
+    this.router.navigate([stationId], {relativeTo: this.activatedRoute});
   }
 
 }
