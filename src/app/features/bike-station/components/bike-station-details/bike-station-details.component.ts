@@ -1,43 +1,51 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { BikeStation } from '../../../../core/models/bike-station';
 import { MapsAPILoader } from '@agm/core';
+import { Coordinate } from '../../models/coordinate';
 
 
 @Component({
   selector: 'app-bike-station-details',
   templateUrl: './bike-station-details.component.html',
-  styleUrls: ['./bike-station-details.component.scss']
+  styleUrls: ['./bike-station-details.component.scss'],
 })
-export class BikeStationDetailsComponent implements OnInit {
+export class BikeStationDetailsComponent  {
 
 
   bikeIcon = 'assets/images/bike-marker.svg';
   localizationIcon = 'assets/images/localization.svg';
 
-
   @Input() bikeStation: BikeStation;
-  @Input() userLatitude: number;
-  @Input() userLongitude: number;
+
+  // tslint:disable-next-line:variable-name
+  private _userCoordinate: Coordinate;
+
+  @Input() set userCoordinate(userCoordinate: Coordinate) {
+    if (userCoordinate) {
+      this._userCoordinate = userCoordinate;
+      this.mapsAPILoader.load().then(() => {
+        this.calculateDistance();
+      });
+    }
+  }
+
+  get userCoordinate(): Coordinate {
+    return this._userCoordinate;
+  }
+
+  distance = 0;
 
   constructor(private mapsAPILoader: MapsAPILoader) {
   }
 
-  ngOnInit(): void {
-
-    this.mapsAPILoader.load().then(() => {
-      this.calculateDistance();
-    });
-
-  }
 
 
 
   calculateDistance(): void {
-    const userLocation = new google.maps.LatLng(this.userLatitude, this.userLongitude);
+    const userLocation = new google.maps.LatLng(this.userCoordinate.latitude, this.userCoordinate.longitude);
     const station = new google.maps.LatLng(this.bikeStation.geometry.coordinates[1], this.bikeStation.geometry.coordinates[0]);
     const distance = google.maps.geometry.spherical.computeDistanceBetween(userLocation, station);
-    console.log('distance in km', (distance / 1000).toFixed(1));
-
+    this.distance = parseFloat((distance / 1000).toFixed(1));
   }
 
 

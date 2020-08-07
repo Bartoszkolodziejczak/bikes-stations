@@ -3,6 +3,7 @@ import { ActivatedRoute, Data } from '@angular/router';
 import { Observable } from 'rxjs';
 import { BikeStation } from '../../../../core/models/bike-station';
 import { map } from 'rxjs/operators';
+import { Coordinate } from '../../models/coordinate';
 
 @Component({
   selector: 'app-bike-station',
@@ -12,9 +13,8 @@ import { map } from 'rxjs/operators';
 export class BikeStationComponent implements OnInit {
 
   bikeStation$: Observable<BikeStation>;
+  userCoordinate: Coordinate;
 
-  userLatitude: number;
-  userLongitude: number;
 
   constructor(private activatedRoute: ActivatedRoute) { }
 
@@ -29,9 +29,10 @@ export class BikeStationComponent implements OnInit {
   findMe(): void {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-        console.log(position)
-        this.userLatitude = position.coords.latitude;
-        this.userLongitude = position.coords.longitude;
+        this.userCoordinate = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        };
       });
     } else {
       alert("Geolocation is not supported by this browser.");

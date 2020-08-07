@@ -23,7 +23,7 @@ export class BikesStationsComponent implements OnInit {
     );
   }
 
-  onNavigateToMap(stationId: number): void {
+  onNavigateToMap(stationId: string): void {
     this.router.navigate([stationId], {relativeTo: this.activatedRoute});
   }
 

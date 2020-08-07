@@ -1,17 +1,24 @@
-<agm-map [latitude]="userLatitude"
-         [longitude]="userLongitude"
-         [zoomControl]="false"
-         [zoom]="11">
-  <agm-marker [latitude]="userLatitude"
-              [longitude]="userLongitude"
-              [iconUrl]="localizationIcon">
+<agm-map
+  *ngIf="userCoordinate"
+  [latitude]="userCoordinate.latitude"
+  [longitude]="userCoordinate.longitude"
+  [zoomControl]="false"
+  [zoom]="11">
+  <agm-marker
+    [latitude]="userCoordinate.latitude"
+    [longitude]="userCoordinate.longitude"
+    [iconUrl]="localizationIcon">
   </agm-marker>
-  <agm-marker [latitude]="bikeStation.geometry.coordinates[1]"
-              [longitude]="bikeStation.geometry.coordinates[0]"
-              [iconUrl]="bikeIcon">
+  <agm-marker
+    [latitude]="bikeStation.geometry.coordinates[1]"
+    [longitude]="bikeStation.geometry.coordinates[0]"
+    [iconUrl]="bikeIcon">
   </agm-marker>
 </agm-map>
 
-<pre>
-  {{bikeStation | json}}
-</pre>
+<app-station-card
+  [station]="bikeStation"
+  [distance]="distance">
+</app-station-card>
+
+TEST {{distance}}

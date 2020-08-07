@@ -1,0 +1,10 @@
+@import "../../../../../variables.scss";
+
+.available {
+  font-size: 4em;
+
+  &.available-bikes {
+    color: $available;
+  }
+
+}
