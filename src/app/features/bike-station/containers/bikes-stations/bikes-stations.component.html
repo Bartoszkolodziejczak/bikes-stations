@@ -1,6 +1,7 @@
 <div class="container-fluid">
   <app-bikes-stations-list
     [bikeStations]="bikesStations$ | async"
+    [userCoordinate]="userCoordinate"
     (navigateToMap)="onNavigateToMap($event)">
   </app-bikes-stations-list>
 </div>

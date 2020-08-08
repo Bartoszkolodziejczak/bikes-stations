@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { BikeStation } from '../../../../core/models/bike-station';
+import { Coordinate } from '../../models/coordinate';
+
 
 @Component({
   selector: 'app-bikes-stations-list',
@@ -10,11 +12,13 @@ import { BikeStation } from '../../../../core/models/bike-station';
 export class BikesStationsListComponent {
 
   @Input() bikeStations: BikeStation[];
+  @Input() userCoordinate: Coordinate;
 
   @Output() navigateToMap = new EventEmitter<string>();
 
   onNavigateToMap(stationId: string): void {
     this.navigateToMap.emit(stationId);
   }
+
 
 }
