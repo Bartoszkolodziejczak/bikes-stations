@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 14 10" width="14" height="10">
+	<style>
+		tspan { white-space:pre }
+		.shp0 { fill: #ffffff } 
+	</style>
+	<g id="Symbols">
+		<g id="wstecz">
+			<g id="wstecz">
+				<path id="Kształt_978" class="shp0" d="M0.51 5.94L4.15 9.7C4.56 10.1 5.2 10.1 5.6 9.69C6 9.28 6 8.61 5.62 8.19L3.6 6.11L12.93 6.11C13.52 6.11 14 5.61 14 5C14 4.39 13.52 3.89 12.93 3.89L3.6 3.89L5.62 1.81C6 1.39 6 0.72 5.6 0.31C5.2 -0.1 4.56 -0.1 4.15 0.3L0.51 4.06C0.19 4.26 0 4.62 0 5C0 5.38 0.19 5.74 0.51 5.94Z" />
+			</g>
+		</g>
+	</g>
+</svg>
