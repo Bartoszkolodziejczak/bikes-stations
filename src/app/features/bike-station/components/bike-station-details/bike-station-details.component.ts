@@ -13,8 +13,8 @@ export class BikeStationDetailsComponent  {
 
   @Input() bikeStation: BikeStation;
   @Input() userCoordinate: Coordinate;
-
-  bikeIcon = 'assets/images/bike-marker.svg';
-  localizationIcon = 'assets/images/localization.svg';
+  @Input() bikeIcon: string;
+  @Input() localizationIcon: string;
+  @Input() error: string;
 
 }

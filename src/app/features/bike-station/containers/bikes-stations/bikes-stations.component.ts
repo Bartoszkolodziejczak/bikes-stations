@@ -4,6 +4,7 @@ import { ActivatedRoute, Data, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { BikeStation } from '../../../../core/models/bike-station';
 import { Coordinate } from '../../models/coordinate';
+import { ErrorService } from '../../../../core/services/error.service';
 
 @Component({
   selector: 'app-bikes-stations',
@@ -13,10 +14,12 @@ import { Coordinate } from '../../models/coordinate';
 export class BikesStationsComponent implements OnInit {
 
   bikesStations$: Observable<BikeStation[]>;
+  error$: Observable<string>;
   userCoordinate: Coordinate;
 
   constructor(private activatedRoute: ActivatedRoute,
-              private router: Router) {
+              private router: Router,
+              private errorService: ErrorService) {
   }
 
   ngOnInit(): void {
@@ -24,6 +27,7 @@ export class BikesStationsComponent implements OnInit {
     this.bikesStations$ = this.activatedRoute.data.pipe(
       map((data: Data) => data.bikesStations)
     );
+    this.error$ = this.errorService.error$;
   }
 
   onNavigateToMap(stationId: string): void {
@@ -31,7 +35,6 @@ export class BikesStationsComponent implements OnInit {
   }
 
 
-  // TODO refactoring i nie tutaj
   findMe(): void {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
@@ -41,7 +44,7 @@ export class BikesStationsComponent implements OnInit {
         };
       });
     } else {
-      alert("Geolocation is not supported by this browser.");
+      alert('Geolocation is not supported by this browser.');
     }
   }
 

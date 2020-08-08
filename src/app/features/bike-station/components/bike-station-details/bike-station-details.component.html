@@ -4,19 +4,29 @@
   [longitude]="userCoordinate.longitude"
   [zoomControl]="false"
   [zoom]="11">
+
   <agm-marker
     [latitude]="userCoordinate.latitude"
     [longitude]="userCoordinate.longitude"
     [iconUrl]="localizationIcon">
   </agm-marker>
+
   <agm-marker
     [latitude]="bikeStation.geometry.coordinates[1]"
     [longitude]="bikeStation.geometry.coordinates[0]"
     [iconUrl]="bikeIcon">
   </agm-marker>
+
 </agm-map>
 
 <app-station-card
   [station]="bikeStation"
   [userCoordinate]="userCoordinate">
 </app-station-card>
+
+
+<div *ngIf="error"
+     class="alert alert-danger"
+     role="alert">
+  {{error}}
+</div>

@@ -13,6 +13,7 @@ export class BikesStationsListComponent {
 
   @Input() bikeStations: BikeStation[];
   @Input() userCoordinate: Coordinate;
+  @Input() error: string;
 
   @Output() navigateToMap = new EventEmitter<string>();
 
