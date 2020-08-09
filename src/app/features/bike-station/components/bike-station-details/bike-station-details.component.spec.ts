@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BikeStationDetailsComponent } from './bike-station-details.component';
+import { StationCardComponent } from '../station-card/station-card.component';
+import { MapsAPILoader } from '@agm/core';
 
 describe('BikeStationDetailsComponent', () => {
   let component: BikeStationDetailsComponent;
@@ -8,9 +10,15 @@ describe('BikeStationDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BikeStationDetailsComponent ]
+      declarations: [
+        BikeStationDetailsComponent,
+        StationCardComponent
+      ],
+      providers: [
+        MapsAPILoader
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

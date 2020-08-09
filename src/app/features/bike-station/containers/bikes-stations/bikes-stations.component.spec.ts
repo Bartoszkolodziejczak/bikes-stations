@@ -1,6 +1,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BikesStationsComponent } from './bikes-stations.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ErrorService } from '../../../../core/services/error.service';
+import { GeolocationService } from '../../../../core/services/geolocation.service';
+import { BikesStationsListComponent } from '../../components/bikes-stations-list/bikes-stations-list.component';
+
+
+class SubErrorService {
+}
+
+class SubGeolocationService {
+}
 
 describe('BikesStationsComponent', () => {
   let component: BikesStationsComponent;
@@ -8,9 +19,19 @@ describe('BikesStationsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BikesStationsComponent ]
+      declarations: [
+        BikesStationsComponent,
+        BikesStationsListComponent
+      ],
+      imports: [
+        RouterTestingModule
+      ],
+      providers: [
+        {provide: ErrorService, useValue: SubErrorService},
+        {provide: GeolocationService, useValue: SubGeolocationService},
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

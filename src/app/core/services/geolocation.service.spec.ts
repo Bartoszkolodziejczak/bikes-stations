@@ -6,7 +6,11 @@ describe('GeolocationService', () => {
   let service: GeolocationService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        GeolocationService
+      ]
+    });
     service = TestBed.inject(GeolocationService);
   });
 

@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StationCardComponent } from './station-card.component';
+import { MapsAPILoader } from '@agm/core';
 
 describe('StationCardComponent', () => {
   let component: StationCardComponent;
@@ -8,7 +9,10 @@ describe('StationCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StationCardComponent ]
+      declarations: [ StationCardComponent ],
+      providers: [
+        MapsAPILoader
+      ]
     })
     .compileComponents();
   }));
