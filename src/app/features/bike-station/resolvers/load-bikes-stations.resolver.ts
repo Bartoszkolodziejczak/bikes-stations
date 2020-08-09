@@ -6,15 +6,20 @@ import { Observable, of } from 'rxjs';
 import { Feature } from '../../../core/models/feature';
 import { catchError, map, take } from 'rxjs/operators';
 import { ErrorService } from '../../../core/services/error.service';
+import { GeolocationService } from '../../../core/services/geolocation.service';
 
 @Injectable()
 export class LoadBikesStationsResolver implements Resolve<BikeStation[]> {
 
   constructor(private bikesStationService: BikeStationService,
-              private errorService: ErrorService) {
+              private errorService: ErrorService,
+              private geolocationService: GeolocationService) {
   }
 
+
   resolve(): Observable<BikeStation[]> {
+
+    this.geolocationService.findUser();
 
     const checkCacheFeatureIsExists: boolean = this.bikesStationService.checkCacheFeatureIsExists();
     if (checkCacheFeatureIsExists) {
@@ -25,7 +30,7 @@ export class LoadBikesStationsResolver implements Resolve<BikeStation[]> {
           return data.features;
         }),
         catchError(error => {
-          this.errorService.getError('Ups! Nie udało się załadować danych');
+          this.errorService.addError('Ups! Nie udało się załadować danych');
           return of([]);
         })
       );
@@ -36,7 +41,7 @@ export class LoadBikesStationsResolver implements Resolve<BikeStation[]> {
           return data.features;
         }),
         catchError(error => {
-          this.errorService.getError('Ups! Nie udało się załadować danych');
+          this.errorService.addError('Ups! Nie udało się załadować danych');
           return of([]);
         })
       );

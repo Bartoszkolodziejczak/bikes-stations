@@ -1,6 +1,6 @@
 <app-bike-station-details [bikeStation]="bikeStation$ | async"
                           [error]="error$ | async"
-                          [userCoordinate]="userCoordinate"
+                          [userCoordinate]="userCoordinate$ | async"
                           [bikeIcon]="bikeIcon"
                           [localizationIcon]="localizationIcon">
 </app-bike-station-details>

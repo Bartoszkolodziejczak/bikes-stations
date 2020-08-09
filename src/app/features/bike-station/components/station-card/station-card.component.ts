@@ -42,7 +42,8 @@ export class StationCardComponent  {
     const userLocation = new google.maps.LatLng(this.userCoordinate.latitude, this.userCoordinate.longitude);
     const station = new google.maps.LatLng(this.station.geometry.coordinates[1], this.station.geometry.coordinates[0]);
     const distance = google.maps.geometry.spherical.computeDistanceBetween(userLocation, station);
-    this.distanceSubject.next( parseFloat((distance / 1000).toFixed(1)));
+    const calculateDistance: number = parseFloat((distance / 1000).toFixed(1));
+    this.distanceSubject.next(calculateDistance);
   }
 
 

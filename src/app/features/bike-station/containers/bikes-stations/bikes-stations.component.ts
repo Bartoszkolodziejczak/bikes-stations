@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { BikeStation } from '../../../../core/models/bike-station';
 import { Coordinate } from '../../models/coordinate';
 import { ErrorService } from '../../../../core/services/error.service';
+import { GeolocationService } from '../../../../core/services/geolocation.service';
 
 @Component({
   selector: 'app-bikes-stations',
@@ -15,15 +16,16 @@ export class BikesStationsComponent implements OnInit {
 
   bikesStations$: Observable<BikeStation[]>;
   error$: Observable<string>;
-  userCoordinate: Coordinate;
+  userCoordinate$: Observable<Coordinate>;
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
-              private errorService: ErrorService) {
+              private errorService: ErrorService,
+              private geolocationService: GeolocationService) {
   }
 
   ngOnInit(): void {
-    this.findMe();
+    this.userCoordinate$ = this.geolocationService.userCoordinate$;
     this.bikesStations$ = this.activatedRoute.data.pipe(
       map((data: Data) => data.bikesStations)
     );
@@ -32,20 +34,6 @@ export class BikesStationsComponent implements OnInit {
 
   onNavigateToMap(stationId: string): void {
     this.router.navigate([stationId], {relativeTo: this.activatedRoute});
-  }
-
-
-  findMe(): void {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.userCoordinate = {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude
-        };
-      });
-    } else {
-      alert('Geolocation is not supported by this browser.');
-    }
   }
 
 

@@ -7,16 +7,20 @@ import { Feature } from '../../../core/models/feature';
 import { catchError, map, take } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorService } from '../../../core/services/error.service';
+import { GeolocationService } from '../../../core/services/geolocation.service';
 
 @Injectable()
 export class LoadBikeStationResolver implements Resolve<BikeStation> {
 
   constructor(private bikesStationService: BikeStationService,
-              private errorService: ErrorService) {
+              private errorService: ErrorService,
+              private geolocationService: GeolocationService) {
   }
 
 
   resolve(route: ActivatedRouteSnapshot): Observable<BikeStation> {
+
+    this.geolocationService.findUser();
 
     const stationId: string = route.params.id;
     const checkCacheFeatureIsExists: boolean = this.bikesStationService.checkCacheFeatureIsExists();
@@ -29,7 +33,7 @@ export class LoadBikeStationResolver implements Resolve<BikeStation> {
           return this.findBikeStation(data, stationId);
         }),
         catchError((error: HttpErrorResponse) => {
-          this.errorService.getError('Ups! Nie udało się załadować danych');
+          this.errorService.addError('Ups! Nie udało się załadować danych');
           return of(null);
         })
       );
@@ -40,7 +44,7 @@ export class LoadBikeStationResolver implements Resolve<BikeStation> {
           return this.findBikeStation(data, stationId);
         }),
         catchError(error => {
-          this.errorService.getError('Ups! Nie udało się załadować danych');
+          this.errorService.addError('Ups! Nie udało się załadować danych');
           return of(null);
         })
       );

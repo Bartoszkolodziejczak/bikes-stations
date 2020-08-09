@@ -1,0 +1,17 @@
+nav {
+  height: 3em;
+  background-color: #000;
+
+  .back-arrow {
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+  }
+
+}

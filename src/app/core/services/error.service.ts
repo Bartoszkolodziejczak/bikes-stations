@@ -10,7 +10,7 @@ export class ErrorService {
   private errorSubject = new BehaviorSubject<string>(null);
   error$ = this.errorSubject.asObservable();
 
-  getError(errorMessage: string): void {
+  addError(errorMessage: string): void {
     this.errorSubject.next(errorMessage);
   }
 

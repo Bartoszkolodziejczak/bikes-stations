@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { SharedModule } from './shared/shared.module';
 
 const routes: Routes = [
   {
@@ -14,7 +15,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {useHash: true})],
+  imports: [
+    RouterModule.forRoot(routes, {useHash: true}),
+    SharedModule
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
