@@ -3,21 +3,28 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { StationCardComponent } from './station-card.component';
 import { MapsAPILoader } from '@agm/core';
 
+
 describe('StationCardComponent', () => {
   let component: StationCardComponent;
   let fixture: ComponentFixture<StationCardComponent>;
+  let mockMapsAPILoader: MapsAPILoader;
+
+  mockMapsAPILoader = jasmine.createSpyObj(['load']);
+  mockMapsAPILoader.load();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StationCardComponent ],
+      declarations: [
+        StationCardComponent,
+      ],
       providers: [
-        MapsAPILoader
-      ]
+        {provide: MapsAPILoader, useValue: mockMapsAPILoader},
+      ],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
-  beforeEach(() => {
+  beforeEach( () => {
     fixture = TestBed.createComponent(StationCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -26,4 +33,7 @@ describe('StationCardComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+
+
 });
